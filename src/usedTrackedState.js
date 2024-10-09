@@ -8,7 +8,7 @@ export const useTrackChanges = (items, typeOfItem) => {
   console.log(items , "items")
 
   useEffect(() => {
-    let updatedTrackedItems = [...trackedItems]; // Get the current tracked items
+    let updatedTrackedItems = [...trackedItems];
     const newEntries = [];
     const removedEntries = [];
 

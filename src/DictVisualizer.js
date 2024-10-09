@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTrackChanges } from './usedTrackedState';
-import './DictVisualizer.css'; // Import the CSS file for animations and styling
-
+import './DictVisualizer.css';
 function DictVisualizer({ dictObjects }) {
   const { trackedItems, newItems, removedItems } = useTrackChanges(dictObjects, 'DICT');
   console.log("OOO", trackedItems)

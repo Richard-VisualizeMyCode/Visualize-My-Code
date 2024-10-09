@@ -1,10 +1,10 @@
 import React from 'react';
-import CodeVisualizer from './CodeVisualizer'; // Import the component
+import CodeVisualizer from './CodeVisualizer'; 
 
 function App() {
   return (
     <div className="App">
-      <CodeVisualizer />  {/* Add the CodeVisualizer component here */}
+      <CodeVisualizer /> 
     </div>
   );
 }

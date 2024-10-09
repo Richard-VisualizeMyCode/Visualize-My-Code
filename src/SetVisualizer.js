@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Component to visualize a set (array of arrays)
+// Component to visualize a set 
 function SetVisualizer({ set }) {
     console.log("Array of arrays (set) is here ", set);
     return (
