@@ -8,24 +8,25 @@ export default function Home() {
     <div >
 
       <Header />
-      {/* <div
-        style={{
-          width: '805px',
-          height: '67px',
-          left: '258px',
-          top: '179px',
-          fontFamily: "'Asap', sans-serif",
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '48px',
-          lineHeight: '55px',
-          textAlign: 'center',
-          color: '#007AFF',
-        }}
+      <div
+        className="text-container"
       >
-        Visualize Your Code Like Never Before Transform your code into powerful visualizations for better understanding and debugging.
-      </div> */}
-      <Card label="Arrays" />
+        Visualize Your Code Like Never Before
+        <div className="subtext">
+          Transform your code into powerful visualizations for better understanding and debugging.
+        </div>
+      </div>
+      <div className="card-container__title">
+        Practice Data Structures
+      </div>
+      <div className="card-container">
+        <Card label="Arrays" />
+        <Card label="LinkedList" />
+        <Card label="Stacks" />
+        <Card label="Queues" />
+        <Card label="Binary Search Trees" />
+        <Card label="Dictionaries" />
+      </div>
     </div>
   );
 }
