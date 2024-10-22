@@ -1,37 +1,41 @@
 import React from 'react';
 import { useTrackChanges } from './usedTrackedState';
-import './SetVisualizer.css';
+import './ListVisualizer.css';
 
-function SetVisualizer({ set }) {
-  const { trackedItems: trackedSets, newItems, removedItems } = useTrackChanges(set, 'SET');
+function ListVisualizer({ list }) {
+  const { trackedItems: trackedLists, newItems, removedItems } = useTrackChanges(list, 'ARRAY');
 
   return (
-    <div className="set-visualizer">
-      <h3>Set Visualizer</h3>
-      {trackedSets.map((subset, subsetIndex) => (
-        <div key={subsetIndex} className="set-container">
-          <h4>Set {subsetIndex + 1}</h4>
-          <div className="set-grid stack-container">
-            {Array.from(subset).map((item, index) => (
-              <div
-                key={index}
-                className={`set-item ${
-                  newItems.some(
-                    (newItem) =>
-                      newItem.item === item
-                  )
-                    ? 'animate-new'
-                    : removedItems.some(
-                        (removedItem) =>
-                          removedItem.item === item
-                      )
-                    ? 'animate-remove'
-                    : ''
-                }`}
-              >
-                {item}
-              </div>
-            ))}
+    <div className="list-visualizer">
+      <h3>List Visualizer</h3>
+      {trackedLists.map((sublist, sublistIndex) => (
+        <div key={sublistIndex} className="list-container">
+          <h4>List {sublistIndex + 1}</h4>
+          <div className="list-grid stack-container">
+            {sublist.slice().reverse().map((item, index) => {
+              // Calculate the original index before reversal
+              const originalIndex = sublist.length - 1 - index;
+              return (
+                <div
+                  key={index}
+                  className={`list-item ${
+                    newItems.some(
+                      (newItem) =>
+                        newItem.item === item && newItem.position === originalIndex
+                    )
+                      ? 'animate-new'
+                      : removedItems.some(
+                          (removedItem) =>
+                            removedItem.item === item && removedItem.position === originalIndex
+                        )
+                      ? 'animate-remove'
+                      : ''
+                  }`}
+                >
+                  {item}
+                </div>
+              );
+            })}
           </div>
         </div>
       ))}
@@ -39,4 +43,4 @@ function SetVisualizer({ set }) {
   );
 }
 
-export default SetVisualizer;
+export default ListVisualizer;

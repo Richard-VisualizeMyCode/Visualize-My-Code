@@ -1,24 +1,36 @@
-import React from 'react';
+import {React} from 'react';
+import { useTrackChanges } from './usedTrackedState';
+import './SetVisualizer.css';
 
-// Component to visualize a set 
 function SetVisualizer({ set }) {
-    console.log("Array of arrays (set) is here ", set);
-    return (
-      <div>
-        <h3>Set of Arrays</h3>
-        <ul>
-          {set.map((subset, subsetIndex) => (
-            <li key={subsetIndex}>
-              <ul>
-                {subset.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
+  const { trackedItems: trackedSets, newItems, removedItems } = useTrackChanges(set, 'SET');
+
+  return (
+    <div className="set-visualizer">
+      <h3>Set Visualizer</h3>
+      {trackedSets.map((trackedSet, setIndex) => (
+        <div key={setIndex} className="set-container">
+          <h4>Set {setIndex + 1}</h4>
+          <div className="set-grid">
+            {[...trackedSet].map((item, index) => (
+              <div
+                key={index}
+                className={`set-item ${
+                  newItems.some((newItem) => newItem.item === item)
+                    ? 'animate-new'
+                    : removedItems.some((removedItem) => removedItem.item === item)
+                    ? 'animate-remove'
+                    : ''
+                }`}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default SetVisualizer;

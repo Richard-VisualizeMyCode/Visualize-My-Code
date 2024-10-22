@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import axios from "axios";
 import ListVisualizer from "./ListVisualizer";
 import SetVisualizer from "./SetVisualizer";
 import DictVisualizer from "./DictVisualizer";
+
 import "./CodeVisualizer.css"; // Import the CSS file for layout and styling
+import TreeVisualizer from "./TreesVisualizer";
 
 function CodeVisualizer() {
   const [code, setCode] = useState("");
@@ -20,11 +22,11 @@ function CodeVisualizer() {
     event.preventDefault();
     setLoading(true);
     setCurrentStep(0);
-    setError(null); // Clear previous error message
-    setTrace(null); // Clear previous trace
+    setError(null); 
+    setTrace(null); 
 
     try {
-      const response = await axios.post("http://localhost:5000/run_code", {
+      const response = await axios.post("http://127.0.0.1:8000/run_code", {  // Update this URL to your desired endpoint
         code,
       });
       setTrace(response.data.trace); // Store the execution trace from the backend
@@ -36,37 +38,66 @@ function CodeVisualizer() {
     }
   };
 
-  const handleStep = () => {
+  const handleNextStep = () => {
     setCurrentStep((prevStep) =>
       prevStep < trace.length - 1 ? prevStep + 1 : prevStep
     );
   };
 
-
-
+  const handleStepChange = (event) => {
+    setCurrentStep(Number(event.target.value));
+  };
+  
   const extractHeapObjects = (heap) => {
     const listObjects = [];
     const setObjects = [];
     const dictObjects = [];
+    const treeObjects = [];
 
-    Object.values(heap).forEach((obj) => {
-      if (obj[0] === "LIST") {
-        const elements = obj.slice(1).flat();
-        listObjects.push(elements);
-      } else if (obj[0] === "SET") {
-        const elements = obj.slice(1).flat();
-        setObjects.push(elements);
-      } else if (obj[0] === "DICT") {
-        const dictEntries = {};
-        obj.slice(1).forEach(([key, value]) => {
-          dictEntries[key] = value;
-        });
-        dictObjects.push(dictEntries);
-      }
+    console.log("HEAPIFY", heap);
+
+    Object.entries(heap).forEach(([objId, obj]) => {
+      console.log("OBJ", objId, obj);
+        if (obj[0] === "LIST") {
+            const elements = obj.slice(1).flat();
+            listObjects.push(elements);
+        } else if (obj[0] === "SET") {
+            const elements = obj.slice(1).flat();
+            setObjects.push(elements);
+        } else if (obj[0] === "DICT") {
+            const dictEntries = {};
+            obj.slice(1).forEach(([key, value]) => {
+                dictEntries[key] = value;
+            });
+            dictObjects.push(dictEntries);
+        } else if (obj[0] === "INSTANCE" && obj[1] === "Node") {
+            console.log("This is the obj ", obj);
+            
+            // Extract attributes
+            const attributes = obj.slice(2);
+            console.log("att", attributes); 
+
+            const node = { ref: objId }; // 
+            
+            // Loop over the attributes and assign them to the node object
+            attributes.forEach(([key, value]) => {
+                node[key] = value;
+            });
+
+            console.log("att", attributes);
+            console.log("TreeNode here", node);
+
+            const treeNodeDict = { TreeNode: node };
+
+            // Add node to treeObjects array
+            treeObjects.push(treeNodeDict);
+        }
     });
 
-    return { listObjects, setObjects, dictObjects };
-  };
+    return { listObjects, setObjects, dictObjects, treeObjects };
+};
+
+  
 
   return (
     <div className="container">
@@ -94,9 +125,21 @@ function CodeVisualizer() {
             <h2>
               Execution Trace (Step {currentStep + 1} of {trace.length}):
             </h2>
-         
+            {/* <p>{JSON.stringify(trace[currentStep])}</p> Display the current trace step */}
+            
+            {/* Slider for navigating the steps */}
+            <input
+              type="range"
+              min="0"
+              max={trace.length - 1}
+              value={currentStep}
+              onChange={handleStepChange}
+            />
+            <p>Current Step: {currentStep + 1}</p>
+
+            {/* Next step button */}
             <button
-              onClick={handleStep}
+              onClick={handleNextStep}
               disabled={currentStep >= trace.length - 1}
             >
               {currentStep < trace.length - 1 ? "Next Step" : "No More Steps"}
@@ -109,7 +152,8 @@ function CodeVisualizer() {
         <h2>Data Structures</h2>
         {trace && trace[currentStep]?.heap && (
           (() => {
-            const { listObjects, setObjects, dictObjects } = extractHeapObjects(
+            console.log("TRACE", trace);
+            const { listObjects, setObjects, dictObjects, treeObjects } = extractHeapObjects(
               trace[currentStep].heap
             );
             return (
@@ -122,6 +166,9 @@ function CodeVisualizer() {
                 )}
                 {dictObjects.length > 0 && (
                   <DictVisualizer dictObjects={dictObjects} />
+                )}
+                {treeObjects.length > 0 && (
+                  <TreeVisualizer trees={treeObjects} />
                 )}
               </div>
             );

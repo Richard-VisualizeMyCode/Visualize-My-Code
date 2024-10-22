@@ -1,5 +1,6 @@
 import React from 'react';
-import CodeVisualizer from './CodeVisualizer'; 
+import CodeVisualizer from './CodeVisualizer';
+
 
 function App() {
   return (

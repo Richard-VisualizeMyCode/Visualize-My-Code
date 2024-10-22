@@ -1,0 +1,78 @@
+/* Basic styles for the tree visualizer */
+.tree-visualizer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Styling individual tree nodes */
+.tree-node {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+  margin: 10px;
+  position: relative;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+/* Animation for adding a new node */
+.tree-node.animate-new {
+  animation: new-item 2s ease-in-out;
+}
+
+/* Animation for removing a node */
+.tree-node.animate-remove {
+  animation: remove-item 2s ease-in-out;
+}
+
+/* Keyframes for adding a node (similar to SetVisualizer) */
+@keyframes new-item {
+  0% {
+    background-color: #c3e6cb;
+    transform: scale(0.5);
+  }
+  100% {
+    background-color: #f0f0f0;
+    transform: scale(1);
+  }
+}
+
+/* Keyframes for removing a node */
+@keyframes remove-item {
+  0% {
+    background-color: #f5c6cb;
+    transform: scale(1);
+  }
+  100% {
+    background-color: #f0f0f0;
+    opacity: 0;
+    transform: scale(0);
+    display: none;
+  }
+}
+
+/* Container for child nodes */
+.children {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Position left child to the left of the parent */
+.left-child {
+  margin-right: auto;
+  position: relative;
+  left: -50px;
+}
+
+/* Position right child to the right of the parent */
+.right-child {
+  margin-left: auto;
+  position: relative;
+  right: -50px;
+}
