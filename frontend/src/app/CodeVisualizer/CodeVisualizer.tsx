@@ -1,9 +1,10 @@
+"use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import ListVisualizer from "../DataStructures/ListVisualizer";
-import SetVisualizer from "./SetVisualizer";
+import SetVisualizer from "../DataStructures/SetVisualizer";
 import DictVisualizer from "../DataStructures/DictionaryVisualizer";
-import TreeVisualizer from "../DataStructures/";
+// import TreeVisualizer from "./TreesVisualizer";
 import "./CodeVisualizer.css";
 
 interface TraceStep {
@@ -140,7 +141,7 @@ const CodeVisualizer: React.FC = () => {
                             {listObjects.length > 0 && <ListVisualizer list={listObjects} />}
                             {setObjects.length > 0 && <SetVisualizer set={setObjects} />}
                             {dictObjects.length > 0 && <DictVisualizer dictObjects={dictObjects} />}
-                            {treeObjects.length > 0 && <TreeVisualizer trees={treeObjects} />}
+                            {/* {treeObjects.length > 0 && <TreeVisualizer trees={treeObjects} />} */}
                         </div>
                     );
                 })()}

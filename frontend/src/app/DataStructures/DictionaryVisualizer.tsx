@@ -1,5 +1,5 @@
 import React from "react";
-import { useTrackChanges } from "./usedTrackedState";
+import { useTrackChanges } from "../useTrackState";
 import "./DictionaryVisualizer.css";
 
 interface DictVisualizerProps {

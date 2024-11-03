@@ -1,5 +1,5 @@
 import React from "react";
-import { useTrackChanges } from "./usedTrackedState";
+import { useTrackChanges } from "../useTrackState";
 import "./ListVisualizer.css";
 
 interface ListVisualizerProps {
@@ -20,7 +20,7 @@ const ListVisualizer: React.FC<ListVisualizerProps> = ({ list }) => {
                 <div key={sublistIndex} className="list-container">
                     <h4>List {sublistIndex + 1}</h4>
                     <div className="list-grid stack-container">
-                        {sublist.slice().reverse().map((item, index) => {
+                        {sublist.slice().reverse().map((item: string, index: number) => {
                             const originalIndex = sublist.length - 1 - index;
                             return (
                                 <div

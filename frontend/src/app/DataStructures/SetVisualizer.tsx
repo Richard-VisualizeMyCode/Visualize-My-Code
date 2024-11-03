@@ -1,5 +1,5 @@
 import React from "react";
-import { useTrackChanges } from "../useTrackChanges";
+import { useTrackChanges } from "../useTrackState";
 import "./SetVisualizer.css";
 
 interface SetVisualizerProps {
@@ -7,15 +7,15 @@ interface SetVisualizerProps {
 }
 
 const SetVisualizer: React.FC<SetVisualizerProps> = ({ set }) => {
-    const {
-        trackedItems: trackedSets,
-        newItems,
-        removedItems,
-    } = useTrackChanges(set, "SET");
+    // const {
+    //     trackedItems: trackedSets,
+    //     newItems,
+    //     removedItems,
+    // } = useTrackChanges(set, "SET");
 
     return (
         <div className="set-visualizer">
-            <h3>Set Visualizer</h3>
+            {/* <h3>Set Visualizer</h3>
             {trackedSets.map((trackedSet, setIndex) => (
                 <div key={setIndex} className="set-container">
                     <h4>Set {setIndex + 1}</h4>
@@ -35,7 +35,7 @@ const SetVisualizer: React.FC<SetVisualizerProps> = ({ set }) => {
                         ))}
                     </div>
                 </div>
-            ))}
+            ))} */}
         </div>
     );
 };

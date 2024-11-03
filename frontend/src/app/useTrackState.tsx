@@ -26,9 +26,9 @@ export const useTrackChanges = (items: any[], typeOfItem: string): TrackChangesR
             if (typeOfItem === "ARRAY") {
                 if (!updatedTrackedItems[index]) {
                     updatedTrackedItems[index] = [...item];
-                    newEntries.push(...item.map((_, i) => ({ item: item[i], position: i })));
+                    newEntries.push(...item.map((_: unknown, i: number) => ({ item: item[i], position: i })));
                 } else {
-                    item.forEach((entry, entryIndex) => {
+                    item.forEach((entry: string, entryIndex: number) => {
                         if (updatedTrackedItems[index][entryIndex] !== entry) {
                             updatedTrackedItems[index].splice(entryIndex, 0, entry);
                             newEntries.push({ item: entry, position: entryIndex });
@@ -36,7 +36,7 @@ export const useTrackChanges = (items: any[], typeOfItem: string): TrackChangesR
                     });
 
                     const removedForDelay: number[] = [];
-                    updatedTrackedItems[index].forEach((trackedEntry, trackedEntryIndex) => {
+                    updatedTrackedItems[index].forEach((trackedEntry: string, trackedEntryIndex: number) => {
                         const isStillPresent = item.includes(trackedEntry);
                         if (!isStillPresent || trackedEntry !== item[trackedEntryIndex]) {
                             removedEntries.push({ item: trackedEntry, position: trackedEntryIndex });
@@ -47,7 +47,7 @@ export const useTrackChanges = (items: any[], typeOfItem: string): TrackChangesR
                     if (removedForDelay.length > 0) {
                         setTimeout(() => {
                             updatedTrackedItems = updatedTrackedItems.map((lst, idx) =>
-                                idx === index ? lst.filter((_, i) => !removedForDelay.includes(i)) : lst
+                                idx === index ? lst.filter((_: unknown, i: number) => !removedForDelay.includes(i)) : lst
                             );
                             setTrackedItems([...updatedTrackedItems]);
                         }, 2000);
@@ -80,11 +80,11 @@ export const useTrackChanges = (items: any[], typeOfItem: string): TrackChangesR
             } else if (typeOfItem === "SET") {
                 if (!updatedTrackedItems[index]) {
                     updatedTrackedItems[index] = new Set(item);
-                    item.forEach((setItem) => newEntries.push({ item: setItem }));
+                    item.forEach((setItem: unknown) => newEntries.push({ item: setItem }));
                 } else {
                     const currentSet = updatedTrackedItems[index] as Set<any>;
 
-                    item.forEach((setItem) => {
+                    item.forEach((setItem: unknown) => {
                         if (!currentSet.has(setItem)) {
                             currentSet.add(setItem);
                             newEntries.push({ item: setItem });
