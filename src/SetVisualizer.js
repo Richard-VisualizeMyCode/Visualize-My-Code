@@ -1,3 +1,9 @@
+/**
+ * `SetVisualizer`: component for displaying and tracking changes in a set objects.
+ * It highlights new and removed items to show changes in the set over time.
+ * 
+ * **/
+
 import {React} from 'react';
 import { useTrackChanges } from './usedTrackedState';
 import './SetVisualizer.css';

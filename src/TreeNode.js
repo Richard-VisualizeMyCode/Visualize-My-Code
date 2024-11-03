@@ -1,3 +1,10 @@
+
+/**
+ * `TreeNode` component that recursively renders a tree node and its children. It visualizes a binary tree
+ * structure
+ * 
+ * **/
+
 import React, { useEffect, useState } from 'react';
 
 const findNodeByRef = (ref, nodes) => {

@@ -1,3 +1,10 @@
+
+/**
+ * `DictVisualizer`: component for displaying and tracking changes in a list of dictionary objects.
+ * It highlights new and removed items to show changes in the dictionaries over time.
+ * 
+ * **/
+
 import React from 'react';
 import { useTrackChanges } from './usedTrackedState';
 import './DictVisualizer.css';

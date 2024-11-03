@@ -1,3 +1,27 @@
+
+/**
+ * `CodeVisualizer`: Component allows users to input Python code, submit it for execution, 
+ * and visualize the execution trace step-by-step, including different data structures like lists, sets, 
+ * dictionaries, and trees.
+
+ * Key Components:
+ * - `textarea`: Input field for Python code.
+ * - `button` (Submit): Executes the code via a backend API and retrieves the execution trace.
+ * - `Execution Trace`: Displays the current step and a slider for navigating through steps.
+ * - `Visualizers`: Renders different data structures (lists, sets, dictionaries, trees) from the current 
+ *   trace step using components like `ListVisualizer`, `SetVisualizer`, `DictVisualizer`, and `TreeVisualizer`.
+
+ * State:
+ * - `code`: User input code.
+ * - `trace`: Execution trace data.
+ * - `currentStep`: Tracks the step of the trace being viewed.
+ * - `loading` & `error`: Manages submission state and displays errors.
+
+ * Functionality:
+ * - `handleSubmit`: Sends the code to the backend, stores the trace, or displays errors.
+ * - `extractHeapObjects`: Extracts data structures from the trace for visualization.
+ */
+
 import React, {  useState } from "react";
 import axios from "axios";
 import ListVisualizer from "./ListVisualizer";

@@ -1,3 +1,9 @@
+/**
+ * `ListVisualizer`: component for displaying and tracking changes in a list objects.
+ * It highlights new and removed items to show changes in the list over time.
+ * 
+ * **/
+
 import React from 'react';
 import { useTrackChanges } from './usedTrackedState';
 import './ListVisualizer.css';

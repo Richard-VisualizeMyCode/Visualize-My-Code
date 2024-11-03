@@ -1,3 +1,12 @@
+/**
+ * `useTrackChanges` is a custom React hook for tracking additions, removals, and updates within collections like arrays,
+ * dictionaries, sets, and trees. It identifies changes in the given items and applies a delay to support animations for
+ * new and removed items.
+ * 
+ * 
+ * **/
+
+
 import { useState, useEffect } from 'react';
 
 export const useTrackChanges = (items, typeOfItem) => {
@@ -6,7 +15,7 @@ export const useTrackChanges = (items, typeOfItem) => {
   const [removedItems, setRemovedItems] = useState([]);
 
   useEffect(() => {
-    console.log("ITEMS in useEffect", items)
+
     if (!items) return; // Guard clause to prevent undefined items from processing
 
     let updatedTrackedItems = [...trackedItems];
