@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-self.__INTERCEPTION_ROUTE_REWRITE_MANIFEST="[]"
-=======
 self.__INTERCEPTION_ROUTE_REWRITE_MANIFEST="[]";
->>>>>>> frontend
