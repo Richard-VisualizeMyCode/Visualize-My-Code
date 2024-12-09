@@ -1,16 +1,25 @@
+# Ignore node_modules and SWC binaries (macOS-specific)
+node_modules/@next/swc-darwin-arm64/
+
 # Ignore Next.js cache files
 .next/cache/
 
-# Ignore Next.js SWC binary (not needed on Vercel)
-frontend/node_modules/@next/swc-darwin-arm64/
-
-# Ignore Git files (unnecessary for production)
+# Ignore Git objects (Git pack files)
 .git/
 
-# Ignore large files (like development files)
+# Ignore large files that are not part of the build process
 *.log
-*.md
 *.zip
 *.tar
-*.tar.gz
 *.pack
+*.gz
+*.out
+*.bak
+
+# Ignore production builds (if any)
+build/
+dist/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
