@@ -1,5 +1,9 @@
 # Ignore node_modules and SWC binaries (macOS-specific)
 node_modules/@next/swc-darwin-arm64/
+public/assets/large-images/*
+node_modules/@next/swc-darwin-x64/
+node_modules/@next/swc-win32-x64/
+node_modules/@next/swc-linux-arm64/
 
 # Ignore Next.js cache files
 .next/cache/
