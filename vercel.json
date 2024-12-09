@@ -19,5 +19,15 @@
             "src": "/(.*)",
             "dest": "frontend/$1"
         }
-    ]
+    ],
+    "functions": {
+        "backend/generate_backend.py": {
+            "excludeFiles": [
+                "frontend/**",
+                "node_modules/**",
+                "tests/**",
+                "docs/**"
+            ]
+        }
+    }
 }
