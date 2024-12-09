@@ -1,0 +1,16 @@
+# Ignore Next.js cache files
+.next/cache/
+
+# Ignore Next.js SWC binary (not needed on Vercel)
+frontend/node_modules/@next/swc-darwin-arm64/
+
+# Ignore Git files (unnecessary for production)
+.git/
+
+# Ignore large files (like development files)
+*.log
+*.md
+*.zip
+*.tar
+*.tar.gz
+*.pack
