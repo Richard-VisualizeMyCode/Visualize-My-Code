@@ -22,12 +22,7 @@
     ],
     "functions": {
         "backend/generate_backend.py": {
-            "excludeFiles": [
-                "frontend/**",
-                "node_modules/**",
-                "tests/**",
-                "docs/**"
-            ]
+            "excludeFiles": "frontend/**,node_modules/**,tests/**,docs/**,.env,.DS_Store"
         }
     }
 }
