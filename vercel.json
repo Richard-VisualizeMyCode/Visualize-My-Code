@@ -1,16 +1,22 @@
 {
     "version": 2,
-    "functions": {
-        "backend/generate_backend.py": {
-            "runtime": "@vercel/python",
-            "includeFiles": "**/*.py",
-            "excludeFiles": "**/__pycache__/**,**/*.pyc,**/*.log,**/*.md,**/tests/**,**/docs/**"
+    "builds": [
+        {
+            "src": "frontend/package.json",
+            "use": "@vercel/next",
+            "config": {
+                "excludeFiles": "**/node_modules/**,**/build/**,**/dist/**,**/__pycache__/**,**/public/assets/large-images/*,**/*.pyc,**/*.log,**/*.md"
+            }
         },
-        "frontend/package.json": {
-            "runtime": "@vercel/next",
-            "excludeFiles": "**/node_modules/**,**/build/**,**/dist/**,**/__pycache__/**,**/public/assets/large-images/*,**/*.pyc,**/*.log,**/*.md"
+        {
+            "src": "backend/generate_backend.py",
+            "use": "@vercel/python",
+            "config": {
+                "includeFiles": "**/*.py",
+                "excludeFiles": "**/__pycache__/**,**/*.pyc,**/*.log,**/*.md,**/tests/**,**/docs/**"
+            }
         }
-    },
+    ],
     "routes": [
         {
             "src": "/api/(.*)",
