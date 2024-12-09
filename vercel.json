@@ -5,7 +5,7 @@
             "src": "frontend/package.json",
             "use": "@vercel/next",
             "config": {
-                "excludeFiles": "**/node_modules/**,**/build/**,**/dist/**,**/__pycache__/**,**/public/assets/large-images/*,**/*.pyc,**/*.log,**/*.md"
+                "excludeFiles": "**/node_modules/@next/swc-darwin-arm64/**,**/.next/cache/**,**/.git/**,**/*.pack,**/*.log,**/*.zip,**/*.tar,**/*.gz,**/build/**,**/dist/**,**/__pycache__/**,**/*.pyc"
             }
         },
         {
