@@ -21,16 +21,12 @@
         }
     ],
     "functions": {
+        "backend": {
+            "excludeFiles": "**/__pycache__/**,**/*.pyc,**/*.log,**/*.md,**/tests/**,**/docs/**",
+            "externalModules": "pydantic,fastapi,uvicorn,starlette,anyio,click,idna"
+        },
         "frontend": {
-            "excludeFiles": [
-                "**/node_modules/**",
-                "**/build/**",
-                "**/dist/**",
-                "**/__pycache__/**",
-                "**/*.pyc",
-                "**/*.log",
-                "**/*.md"
-            ]
+            "excludeFiles": "**/node_modules/**,**/build/**,**/dist/**,**/__pycache__/**,**/public/assets/large-images/*,**/*.pyc,**/*.log,**/*.md"
         }
     }
 }
