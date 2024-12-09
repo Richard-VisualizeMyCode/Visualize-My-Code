@@ -19,5 +19,18 @@
             "src": "/(.*)",
             "dest": "frontend/$1"
         }
-    ]
+    ],
+    "functions": {
+        "frontend": {
+            "excludeFiles": [
+                "**/node_modules/**",
+                "**/build/**",
+                "**/dist/**",
+                "**/__pycache__/**",
+                "**/*.pyc",
+                "**/*.log",
+                "**/*.md"
+            ]
+        }
+    }
 }
