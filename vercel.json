@@ -3,13 +3,26 @@
     "builds": [
         {
             "src": "frontend/package.json",
-            "use": "@vercel/next"
+            "use": "@vercel/next",
+            "config": {
+                "excludeFiles": "**/node_modules/@next/swc-darwin-arm64/**,**/.next/cache/**,**/.git/**,**/*.pack,**/*.log,**/*.zip,**/*.tar,**/*.gz,**/build/**,**/dist/**,**/__pycache__/**,**/*.pyc"
+            }
+        },
+        {
+            "src": "backend/generate_backend.py",
+            "use": "@vercel/python",
+            "config": {
+                "includeFiles": "**/*.py",
+                "excludeFiles": "**/__pycache__/**,**/*.pyc,**/*.log,**/*.md,**/tests/**,**/docs/**"
+            }
+
         }
     ],
     "routes": [
         {
             "src": "/api/(.*)",
-            "dest": "backend"
+            "dest": "backend/generate_backend.app"
+
         },
         {
             "src": "/(.*)",

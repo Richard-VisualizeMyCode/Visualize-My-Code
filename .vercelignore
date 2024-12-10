@@ -1,0 +1,29 @@
+# Ignore node_modules and SWC binaries (macOS-specific)
+node_modules/@next/swc-darwin-arm64/
+public/assets/large-images/*
+node_modules/@next/swc-darwin-x64/
+node_modules/@next/swc-win32-x64/
+node_modules/@next/swc-linux-arm64/
+
+# Ignore Next.js cache files
+.next/cache/
+
+# Ignore Git objects (Git pack files)
+.git/
+
+# Ignore large files that are not part of the build process
+*.log
+*.zip
+*.tar
+*.pack
+*.gz
+*.out
+*.bak
+
+# Ignore production builds (if any)
+build/
+dist/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
