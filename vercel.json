@@ -15,14 +15,12 @@
                 "includeFiles": "**/*.py",
                 "excludeFiles": "**/__pycache__/**,**/*.pyc,**/*.log,**/*.md,**/tests/**,**/docs/**"
             }
-
         }
     ],
     "routes": [
         {
-            "src": "/api/(.*)",
+            "src": "/(.*)",
             "dest": "backend/generate_backend.app"
-
         },
         {
             "src": "/(.*)",
