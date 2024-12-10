@@ -31,4 +31,3 @@ class HtmlFrame :
         if not template : template = self.template
         content = template % self.__dict__
         setHTML(content)
-
