@@ -49,7 +49,7 @@ const CodeVisualizer: React.FC<CodeVisualizerProps> = ({
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         setLoading(true);
-        setCurrentStep(0);
+        setCurrentStep(() => 0);
         setError(null);
         setTrace(null);
 
@@ -134,7 +134,7 @@ const CodeVisualizer: React.FC<CodeVisualizerProps> = ({
                         </h2>
                         <input
                             type="range"
-                            min="0"
+                            min={0}
                             max={trace.length - 1}
                             value={currentStep}
                             onChange={handleStepChange}
