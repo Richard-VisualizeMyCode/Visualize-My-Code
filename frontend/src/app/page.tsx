@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function Home() {
   useEffect(() => {
-    axios.get('https://api.example.com/endpoint');
+    axios.get('https://backend-visualize-my-code.onrender.com');
   }, []);
   return (
 
