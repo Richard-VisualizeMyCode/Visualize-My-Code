@@ -1,8 +1,14 @@
+"use client";
 import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
 import Link from 'next/link';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function Home() {
+  useEffect(() => {
+    axios.get('https://api.example.com/endpoint');
+  }, []);
   return (
 
     <div >
