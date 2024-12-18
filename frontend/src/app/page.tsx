@@ -4,13 +4,22 @@ import Card from "./components/Card/Card";
 import Link from 'next/link';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { start } from "repl";
 
 export default function Home() {
   useEffect(() => {
-    axios.get('https://backend-visualize-my-code.onrender.com');
+    const startServer = async () => {
+      try {
+        const response = await axios.get('https://backend-visualize-my-code.onrender.com');
+        console.log('API response:', response.data);
+      } catch (error) {
+        console.error('Error starting server:', error);
+      }
+    };
+
+    startServer();
   }, []);
   return (
-
     <div >
 
       <Header />
